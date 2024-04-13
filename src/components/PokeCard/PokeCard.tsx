@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getPokemon } from "../../api";
 import { useQuery } from "@tanstack/react-query";
+import { pokeColors } from "../../utils";
 
 interface PokeCardProp {
   name: string;
@@ -9,6 +10,8 @@ interface PokeCardProp {
 export const PokeCard = ({ name }: PokeCardProp) => {
   const [openDetail, setOpendetail] = useState<boolean>(false);
   const [seenPokemons, setSeenPokemons] = useState<boolean>(false);
+  const [imageIndex, setImageIndex] = useState<number>(0);
+
   const { data: pokemon, isLoading } = useQuery({
     queryKey: ["pokemon", name],
     queryFn: () => getPokemon(name),
@@ -17,23 +20,6 @@ export const PokeCard = ({ name }: PokeCardProp) => {
   const pokeType = pokemon?.types.map(
     (type: { type: { name: string } }) => type.type.name
   );
-
-  const pokeColors: { [key: string]: string } = {
-    fire: "#FDDFDF",
-    grass: "#DEFDE0",
-    electric: "#FCF7DE",
-    water: "#DEF3FD",
-    ground: "#f4e7da",
-    rock: "#d5d5d4",
-    fairy: "#fceaff",
-    poison: "#98d7a5",
-    bug: "#f8d5a3",
-    dragon: "#97b3e6",
-    psychic: "#eaeda1",
-    flying: "#F5F5F5",
-    fighting: "#E6E0D4",
-    normal: "#F5F5F5",
-  };
 
   const handleDetails = () => {
     setSeenPokemons(true);
@@ -47,27 +33,24 @@ export const PokeCard = ({ name }: PokeCardProp) => {
         typeof value === "string" && value !== pokemon?.sprites.front_default
     ),
   ];
-  const [imageIndex, setImageIndex] = useState(0);
 
   const handleSprite = (event: React.MouseEvent) => {
     event.stopPropagation();
     setImageIndex((imageIndex + 1) % images.length);
-  };
-
-  console.log({ id: pokemon?.id, seenPokemons });
+  };  
 
   return (
     <>
       <div
         style={{
-          backgroundColor: pokeType ? pokeColors[pokeType[0]] : "green",
+          backgroundColor: pokeType ? pokeColors[pokeType[0]] : "#F5F5F5",
         }}
-        className="min-h-48 sm:min-w-56 flex flex-col items-center rounded-md  overflow-hidden"
+        className="min-h-48 max-h-52 sm:min-w-56 flex flex-col items-center rounded-md  overflow-hidden"
         onClick={handleDetails}
       >
         {isLoading ? (
-          <div className="flex justify-center items-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+          <div className="flex justify-center items-center p-4">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-emerald-500"></div>
           </div>
         ) : (
           <>
@@ -104,7 +87,7 @@ export const PokeCard = ({ name }: PokeCardProp) => {
                 style={{
                   backgroundColor: pokeType ? pokeColors[pokeType[0]] : "grey",
                 }}
-                className="absolute left-8 -top-2 w-24 h-24 rounded-full bg-gray-300 "
+                className="absolute left-14 -top-2 w-24 h-24 rounded-full bg-gray-300 "
               ></div>
               <img
                 className="min-w-24 z-10"

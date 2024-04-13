@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Pokémon App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple Pokémon App built with React, TypeScript, and Vite. It uses the [PokéAPI](https://pokeapi.co/) to fetch data about Pokémon.
 
-Currently, two official plugins are available:
+## Dependencies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project uses several dependencies:
 
-## Expanding the ESLint configuration
+- React: A JavaScript library for building user interfaces.
+- TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
+- Vite: A build tool that aims to provide a faster and leaner development experience for modern web projects.
+- Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
+- Axios: A promise-based HTTP client for the browser and node.js.
+- React Query: A data fetching library for React.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+To install the dependencies, run the following command in your terminal:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
+# Running the Development Server
+#To start the development server, run the following command in your terminal:
+npm run dev
+#The server will start, and you can view the application in your web browser at http://localhost:5173/
+
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
