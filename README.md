@@ -13,6 +13,21 @@ This project uses several dependencies:
 - Axios: A promise-based HTTP client for the browser and node.js.
 - React Query: A data fetching library for React.
 
+- ## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file:
+
+`VITE_BASE_URL_API`: This should be the base URL of the Pokémon API. You can get this URL from the [PokéAPI](https://pokeapi.co/) website.
+
+Here is an example of what your .env file might look like:
+
+```env
+VITE_BASE_URL_API=https://pokeapi.co/api/v2/
+
+# Please make sure to create the .env file at the root of the project and to restart your development server after setting the environment variables.
+
+```
+
 ## Installation
 
 To install the dependencies, run the following command in your terminal:
